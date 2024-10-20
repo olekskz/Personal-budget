@@ -31,5 +31,17 @@ header {
 
 h1 {
     padding-left: 200px;
+    color: aliceblue;
 }
 
+body {
+    background-color: 	#2F4F4F;
+}
+
+.main-body {
+    background-color: teal;
+    width: 100%;
+    height: 1000px;
+    border-radius: 20px;
+    margin-top: 10px;
+}
