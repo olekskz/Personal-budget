@@ -4,10 +4,10 @@ header {
     justify-content: space-evenly;
     font-family: "Nunito", sans-serif;
     font-optical-sizing: auto;
-    font-weight: 100;
     font-style: normal;
     background-color: teal; 
     border-radius: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .category-button {
@@ -15,7 +15,6 @@ header {
     height: 30px;
     font-family: "Nunito", sans-serif;
     font-optical-sizing: auto;
-    font-weight: 100;
     font-style: normal;
     margin-top: 25px;
     font-size: medium;
@@ -38,10 +37,107 @@ body {
     background-color: 	#2F4F4F;
 }
 
-.main-body {
-    background-color: teal;
-    width: 100%;
-    height: 1000px;
+main {
+    padding: 5px;
+}
+
+#category-list {
+    list-style-type: none;
+    padding: 1px ;
+}
+
+#main-body {
+    background: teal;
+    padding: 30px;
+    margin: 10px 0;
     border-radius: 20px;
-    margin-top: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.category {
+    display: flex;
+    border: 2px solid #2F4F4F;
+    padding: 10px;
+    border-radius: 20px;
+    margin: 10px;
+}
+
+.delete-button {
+    background: none;
+    border: none;
+    height: 30px;
+    width: 30px;
+}
+
+.delete-button:hover {
+    background: #1e5c55;
+}
+
+
+.money-amount {
+    font-family: "Nunito", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-size: 25px;
+}
+
+.right-elements {
+    margin-left: 1900px;
+    width: 1000px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.edit-button {
+    font-family: "Nunito", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-size: 15px;
+    width: 100px;
+    background-color: aqua;
+    border: none;
+    border-radius: 20px;
+    margin-right: 100px;
+}
+
+.edit-button:hover {
+    background-color: #1e5c55;
+}
+
+.category-name {
+    font-family: "Nunito", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-size: 25px;
+}
+
+footer {
+    display: flex;
+    background-color: teal;
+    border-radius: 20px;
+}
+
+.rest-money {
+    font-family: "Nunito", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-size: 40px;
+    display: flex;
+    padding: 10px;
+}
+
+.dollar {
+    font-family: "Nunito", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-size: 25px;
+    margin-right: 130px;
+}
+
+.dollar-footer {
+    font-family: "Nunito", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-size: 40px;
+    padding: 10px;
 }
