@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Приклад вставки елементів</title>
+    <style>
+        .container {
+            border: 1px solid #000;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container" id="myDiv">
+    <!-- Елементи будуть вставлені сюди -->
+</div>
+
+<button onclick="addElement()">Додати елемент</button>
+
+<script>
+    function addElement() {
+        const div = document.getElementById('myDiv');
+        const newElement = document.createElement('p');
+        newElement.textContent = 'Новий елемент';
+        div.appendChild(newElement);
+    }
+</script>
+
+</body>
+</html>
