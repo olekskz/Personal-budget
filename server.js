@@ -4,9 +4,7 @@ const app = express()
 const PORT = 3001;
 
 
-app.get('/', (req, res) => {
-    res.send('Hello world')
-})
+app.use(express.static('public'))
 
 
 app.listen(PORT, () => {
