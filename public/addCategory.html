@@ -16,15 +16,19 @@
     <main>
         <form class="add-category">
             <label for="add-category-text">Enter category name: </label>
-            <input class="add-category-text" id="text-label" type="text">
+            <input class="text-label-name" id="name" value="">
             <label for="add-money-text">Enter amount of money: </label>
-            <input class="add-money-text" id="text-label" type="text">
-            <button class="create-button">Create</button>
+            <input class="text-label-money" id="money" value="">
+            <button type="submit" class="create-button">Create</button>
             <button class="return-button">
-                <img src="/public/imgs/arrow-rotate-left-solid.svg" alt="Icon" />
+                <img src="imgs/arrow-rotate-left-solid.svg" alt="Icon" />
             </button>
         </form>
     </main>
+    <div id="new-category">
+
+    </div>
 </body>
 <link rel="stylesheet" href="style.css">
+<script src="addCategory.js"></script>
 </html>

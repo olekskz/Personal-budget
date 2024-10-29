@@ -11,15 +11,19 @@ header {
 }
 
 .category-button {
-    width: 100px;
-    height: 30px;
     font-family: "Nunito", sans-serif;
     font-optical-sizing: auto;
     font-style: normal;
     margin-top: 25px;
-    font-size: medium;
-    border-radius: 10px;
+    font-size: large;
+    text-decoration: none;
+    color: black;
+    border: 2px solid black;
+    height: 25px;
+    width: 90px;
+    border-radius: 5px;
 }
+
 
 .amount-container {
     padding-top: 25px;
@@ -185,6 +189,9 @@ footer {
     background: #cf8505;
     border: none;
     border-radius: 20px;
+}
+.create-button:hover {
+    background-color: bisque;
 }
 
 .add-category-text {
