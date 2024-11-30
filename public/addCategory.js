@@ -1,18 +1,37 @@
-const { response } = require("express");
-const addCategory = document.getElementById('new-category')
-const createCategoryButton = document.querySelector('.create-button');
+const categoryForm = document.getElementById('add-category');
+
+categoryForm.addEventListener('submit', async function(event) { 
+    event.preventDefault();
+
+    
+    const category_value = document.getElementById('money').value;
+    const category_name = document.getElementById('name').value;
+
+    
+    const data = { category_name, category_value };
+
+    try {
+        
+        const response = await fetch(`/create-category`, {
+            method: 'POST', 
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        });
 
 
-createCategoryButton.addEventListener('click', () => {
+        if (response.ok) {
+            const result = await response.json();
+            console.log('Server Response:', result);
 
-    const name = document.getElementById('name').value;
-    const money = document.getElementById('money').value;
-
-    fetch(`/api/create?name=${name}&money=${money}`, {
-        method: 'POST',
-    })
-    .then(response.json())
-    .then(({data}) => {
-        addCategory.innerHTML += `<p>Ім'я "${data.name}" і кількість грошей"${data.money}" були успішно додані в базу даних.</p>`
-    })
-})
+            const newCategoryDiv = document.getElementById('new-category');
+            newCategoryDiv.innerHTML += `<p>${category_name}: ${category_value}</p>`;
+        } else {
+            alert(`Error: ${response.statusText}`);
+        }
+    } catch (error) {
+        console.error('Error: ', error);
+        alert('Cannot connect to server');
+    }
+});

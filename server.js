@@ -1,23 +1,15 @@
 const express = require('express');
-const { categories } = require('./db');
-const bodyParser = require('body-parser')
+const bodyParser = require('body-parser');
+const { createCategory } = require('./db');
 const app = express()
-const PORT = 3001;
+const PORT = process.env.PORT || 3001;
+
+
 
 app.use(bodyParser.json())
 app.use(express.static('public'))
 
-app.post('/api/create', (req, res) => {
-    const newCategory = req.body;
-    if (newCategory) {
-        categories.push(newCategory)
-        res.status(201).json({category: newCategory})
-    } else {
-        res.status(400).send()
-    }
-    
-    
-})
+app.post('/create-category', createCategory)
 
 
 app.listen(PORT, () => {

@@ -86,7 +86,7 @@ main {
 }
 
 .right-elements {
-    margin-left: 1900px;
+    margin-left: 600px;
     width: 1000px;
     display: flex;
     justify-content: space-between;
@@ -200,4 +200,10 @@ footer {
 
 .add-category-number {
     margin: 10px;
+}
+
+#new-category {
+    display: flex;
+    background: #1e5c55;
+    height: 50px;
 }
