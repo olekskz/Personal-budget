@@ -13,13 +13,14 @@ const pool = new Pool({
 })
 
 
-const getCategories = (request, response) => {
-    pool.query('select * from categories;', (error, results) => {
-        if (error) {
-            throw error
-        }
-        response.status(200).json(results.rows)
-    })
+const getCategories = async (req, res) => {
+    try {
+        const result = await pool.query('select category_name, category_value from categories');
+        res.json(result.rows);
+    } catch (error) {
+        console.error('Error with fetching');
+        res.status(500).json({error: 'Internal server error'})
+    }
 }
 
 const createCategory = async (req, res) => {
@@ -28,7 +29,7 @@ const createCategory = async (req, res) => {
         const result = await pool.query('insert into categories (category_name, category_value) values ($1, $2) returning *', [category_name, category_value])
         res.status(200).json(result.rows[0]);
     } catch {
-        console.error(err);
+        console.error();
         res.status(500).send('Error')
     }        
 }

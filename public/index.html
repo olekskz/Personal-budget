@@ -21,30 +21,24 @@
     <main>
         <section id="main-body">
                 <ul id='category-list'>
-                    <form class="category">
-                        <label class="category-name">Grocery</label>
-                        <div class="right-elements">
-                            <button class="edit-button">Edit</button>
-                            <label class="money-amount">100</label>
-                            <label class="dollar">$</label>
-                            <button class="delete-button">
-                                <img src="imgs/trash-solid.svg" alt="Icon" />
-                            </button>
-                        </div>
-                    </form>
-                    <form class="category">
-                        <label class="category-name">Health & care</label>
-                        <section class="right-elements">
-                            <button class="edit-button">Edit</button>
-                            <label class="money-amount">100</label>
-                            <label class="dollar">$</label>
-                            <button class="delete-button">
-                                <img src="imgs/trash-solid.svg" alt="Icon" />
-                            </button>
-                        </div>
-                    </form>
+                    
                 </ul>
         </section>
+        <div class="update-container">
+            <form class="update-form">
+                <h3 class="edit-h3">Edit Category</h3>
+                <label for="update-name">Category Name</label>
+                <input type="text" id="update-name">
+                <br>
+                <label for="update-value">Category Value</label>
+                <input type="text" id="update-value">
+                <br>
+                <div class="button-box">
+                    <button type="submit" class="save-update">Save</button>
+                    <button type="button" class="cancel-update">Cancel</button>
+                </div>
+            </form>
+        </div>
     </main>
     <footer>
         <label class="rest-money">1000</label>

@@ -14,22 +14,18 @@
         <h1 class="main-h1">Personal Budget</h1>
     </header>
     <main>
-        <!-- Додано ID для форми -->
         <form id="add-category" class="add-category">
-            <!-- Виправлено атрибути `for` -->
             <label for="name">Enter category name: </label>
-            <input class="text-label-name" id="name" required>
+            <input class="text-label-name" id="name">
             <label for="money">Enter amount of money: </label>
-            <input class="text-label-money" id="money" type="number" required>
+            <input class="text-label-money" id="money" type="number">
             <button type="submit" class="create-button">Create</button>
             <button class="return-button">
                 <img src="imgs/arrow-rotate-left-solid.svg" alt="Icon">
             </button>
         </form>
     </main>
-    <div id="new-category">
-        <!-- Сюди можна динамічно додавати нові категорії -->
-    </div>
+    
 </body>
 <link rel="stylesheet" href="style.css">
 <script src="addCategory.js"></script>

@@ -86,10 +86,10 @@ main {
 }
 
 .right-elements {
-    margin-left: 600px;
+    margin-left: 900px;
     width: 1000px;
     display: flex;
-    justify-content: space-between;
+    justify-content: end;
 }
 
 .edit-button {
@@ -202,8 +202,62 @@ footer {
     margin: 10px;
 }
 
-#new-category {
+
+
+
+.update-container {
     display: flex;
-    background: #1e5c55;
-    height: 50px;
+    justify-content: center; /* Горизонтальне центрування */
+    align-items: center; /* Вертикальне центрування */
+    background-color: lightblue; /* Для наочності */
+    border-radius: 20px;
+    height: 200px;
+    width: 300px; /* Додано ширину для контролю розмірів */
+    margin: auto; /* Забезпечує базове центрування */
+    position: absolute; /* Додаємо абсолютне позиціонування */
+    top: 50%; /* Центрування по вертикалі */
+    left: 50%; /* Центрування по горизонталі */
+    transform: translate(-50%, -50%); /* Вирівнювання */
+    z-index: 9999; /* Робить елемент поверх усіх інших */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Додає тінь для візуального акценту */
+    font-family: "Nunito", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-size: 15px;
+    display: none;
 }
+
+.button-box {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.save-update {
+    width: 70px;
+    height: 30px;
+    border-radius: 20px;
+    border: none;
+    background-color: #9bee8c;
+}
+
+.cancel-update {
+    width: 70px;
+    height: 30px;
+    border-radius: 20px;
+    border: none;
+    background-color: #ee4b4b;
+}
+
+.cancel-update:hover {
+    background-color: #c44040;
+}
+
+.save-update:hover {
+    background-color: #66a85a ;
+}
+
+.edit-h3 {
+    margin-left: 80px;
+}
+
