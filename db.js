@@ -77,9 +77,23 @@ const updateCategory = async (req, res) => {
     }
 };
 
+
+const deleteCategory = async (req, res) => {
+    const id = req.params.id;
+
+    try {
+        const result = await pool.query('delete from categories where id = $1', [id])
+        res.status(200).send('Category deleted');
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({error: 'Internal server error'})
+    }
+}
+
 module.exports = {
     getCategories,
     createCategory,
     getCategoryById,
-    updateCategory
+    updateCategory,
+    deleteCategory
 }

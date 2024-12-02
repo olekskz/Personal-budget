@@ -2,6 +2,7 @@ const bodyDiv = document.getElementById('category-list');
 const updateContainer = document.querySelector('.update-container');
 const cancelButton = document.querySelector('.cancel-update');
 const overlay = document.createElement('div');
+const deleteButton = document.querySelector('.return-button');
 
 // Додаємо клас для затемнення
 overlay.classList.add('overlay-dark');
@@ -44,6 +45,20 @@ const updateCategory = async () => {
         overlay.style.display = 'none'; // Сховуємо затемнення
     } catch (error) {
         console.error('Error updating category:', error);
+    }
+};
+
+const deleteCategoryFetch = async (categoryId) => {
+    try {
+        const response = await fetch(`/delete-category/${categoryId}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        })
+        loadCategories();
+    } catch (error) {
+        console.log(error)
     }
 };
 
@@ -138,6 +153,10 @@ const loadCategories = async () => {
                     console.error('Error fetching category by ID:', error);
                 }
             });
+            deleteButton.addEventListener('click', (event) => {
+                event.preventDefault();
+                deleteCategoryFetch(category.id);
+            });
         });
     } catch (error) {
         console.error('Error loading categories:', error);
@@ -158,3 +177,4 @@ cancelButton.addEventListener('click', (event) => {
     updateContainer.style.display = 'none';
     overlay.style.display = 'none';
 });
+
