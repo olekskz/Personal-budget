@@ -3,11 +3,29 @@ const updateContainer = document.querySelector('.update-container');
 const cancelButton = document.querySelector('.cancel-update');
 const overlay = document.createElement('div');
 const deleteButton = document.querySelector('.return-button');
+const restLabel = document.querySelector('.rest-money');
+const amountBox = document.getElementById('Amount_box'); // Поле для введення бюджету
 
 // Додаємо клас для затемнення
 overlay.classList.add('overlay-dark');
 document.body.appendChild(overlay);
 overlay.style.display = 'none';
+
+const totalBudget = () => parseFloat(amountBox.value) || 0; // Загальний бюджет
+
+const updateRemainingBudget = async () => {
+    try {
+        const response = await fetch('/get-categories'); // Отримання списку категорій
+        const categories = await response.json();
+
+        const totalSpent = categories.reduce((sum, category) => sum + parseFloat(category.category_value || 0), 0);
+        const remainingBudget = totalBudget() - totalSpent;
+
+        restLabel.textContent = `Remaining Budget: $${remainingBudget.toFixed(2)}`;
+    } catch (error) {
+        console.error('Error updating remaining budget:', error);
+    }
+};
 
 const updateCategory = async () => {
     const categoryId = document.getElementById('update-name').dataset.categoryId; // або отримуєте ID з відповідного поля
@@ -39,10 +57,10 @@ const updateCategory = async () => {
         const updatedCategory = await response.json();
         console.log('Updated category:', updatedCategory);
 
-        // Оновлення категорії на сторінці або закриття форми
         loadCategories(); // Оновлення списку категорій
         updateContainer.style.display = 'none'; // Закриваємо форму
         overlay.style.display = 'none'; // Сховуємо затемнення
+        updateRemainingBudget(); // Оновлення залишку
     } catch (error) {
         console.error('Error updating category:', error);
     }
@@ -55,10 +73,11 @@ const deleteCategoryFetch = async (categoryId) => {
             headers: {
                 'Content-Type': 'application/json',
             }
-        })
+        });
         loadCategories();
+        updateRemainingBudget(); // Оновлення залишку
     } catch (error) {
-        console.log(error)
+        console.error('Error deleting category:', error);
     }
 };
 
@@ -79,8 +98,6 @@ const loadCategories = async () => {
         }
 
         categories.forEach(category => {
-            console.log('Category ID:', category.id);
-
             const categoryForm = document.createElement('form');
             categoryForm.classList.add('category');
 
@@ -120,13 +137,6 @@ const loadCategories = async () => {
                 event.preventDefault();
 
                 const categoryId = category.id;
-                console.log('Category ID for Edit:', categoryId);
-
-                if (!categoryId) {
-                    console.error('Category ID is undefined or missing!');
-                    return;
-                }
-
                 overlay.style.display = 'block';
 
                 try {
@@ -136,7 +146,6 @@ const loadCategories = async () => {
                     }
 
                     const categoryData = await response.json();
-                    console.log('Fetched category data:', categoryData);
 
                     const nameUpdateInput = document.getElementById('update-name');
                     const valueUpdateInput = document.getElementById('update-value');
@@ -144,28 +153,36 @@ const loadCategories = async () => {
                     if (nameUpdateInput && valueUpdateInput) {
                         nameUpdateInput.value = categoryData.category_name || '';
                         valueUpdateInput.value = categoryData.category_value || '';
-                        nameUpdateInput.dataset.categoryId = categoryId; // Прив'язуємо ID до input
+                        nameUpdateInput.dataset.categoryId = categoryId;
                         updateContainer.style.display = 'block';
-                    } else {
-                        console.error('Update form elements not found');
                     }
                 } catch (error) {
                     console.error('Error fetching category by ID:', error);
                 }
             });
+
             deleteButton.addEventListener('click', (event) => {
                 event.preventDefault();
                 deleteCategoryFetch(category.id);
             });
         });
+
+        updateRemainingBudget(); // Оновлення залишку після завантаження категорій
     } catch (error) {
         console.error('Error loading categories:', error);
     }
 };
 
-document.addEventListener('DOMContentLoaded', loadCategories);
+document.addEventListener('DOMContentLoaded', () => {
+    loadCategories();
 
-// Оновлений обробник кнопки "Save"
+    // Оновлення залишку при зміні бюджету
+    amountBox.addEventListener('input', () => {
+        updateRemainingBudget();
+    });
+});
+
+// Обробник для кнопки "Save"
 document.querySelector('.save-update').addEventListener('click', (event) => {
     event.preventDefault();
     updateCategory();
@@ -177,4 +194,3 @@ cancelButton.addEventListener('click', (event) => {
     updateContainer.style.display = 'none';
     overlay.style.display = 'none';
 });
-

@@ -1,6 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const { createCategory, getCategories, getCategoryById, updateCategory, deleteCategory } = require('./db');
+const { createCategory, getCategories, getCategoryById, updateCategory, deleteCategory, getValues } = require('./db');
 const app = express()
 const PORT = process.env.PORT || 3001;
 
